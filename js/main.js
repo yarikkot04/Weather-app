@@ -7,6 +7,7 @@ chooseBtn.addEventListener('click', (event) => {
   if(!openedStatus){
     menu.openMenu(chooseCity);
     menu.constructMenu(chooseCity);
+    menu.chooseMode();
     openedStatus = true;
   }else{
     menu.closeMenu(chooseCity);
