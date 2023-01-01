@@ -1,0 +1,114 @@
+body{
+  background-image: url('/img/new_york.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+#cities[close="true"] {
+  position: absolute;
+  top:100px;
+  left: 650px;
+  width: 210px;
+  height: 35px;
+  color: aliceblue;
+  border: 2px solid #00cfff;
+  background-color: #00bfff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 10%;
+  user-select: none;
+}
+#cities[close="false"] {
+  position: absolute;
+  top:100px;
+  left: 650px;
+  width: 210px;
+  height: 150px;
+  color: aliceblue;
+  border: 2px solid #00cfff;
+  background-color: #00bfff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 5%;
+  user-select: none;
+  overflow:auto;
+}
+#cities:hover {
+  filter: brightness(110%);
+}
+#search {
+  position: absolute;
+  top:100px;
+  left: 880px;
+  width: 220px;
+  height: 35px;
+  color: aliceblue;
+  border: 2px solid #00cfff;
+  background-color: #00bfff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 10%;
+  user-select: none;
+}
+#field {
+  position: absolute;
+  left: 650px;
+  top:150px;
+  width: 450px;
+  height: 450px;
+  color: aliceblue;
+  border: 2px solid #00cfff;
+  background-color: #00bfff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#header{
+  color: aliceblue;
+  border-radius: 5%;
+  user-select: none;
+}
+#tableCity{
+  margin: 5px;
+  font-size: 1rem;
+  color: aliceblue;
+  user-select: none;
+  cursor: pointer;
+}
+#tableCity li {
+  margin: 1px;
+  border: 2px solid white;
+}
+#tableCity li:hover {
+  font-size: 1.4rem;
+}
+#choose{
+  width: 190px;
+  height: 30px;
+  color: aliceblue;
+  border: 2px solid #00bfff;
+  background-color: #00bfff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 30px;
+  border-radius: 5%;
+  user-select: none;
+}
+#choose:hover{
+  font-size: 1.4rem;
+}
