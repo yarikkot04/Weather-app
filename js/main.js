@@ -1,7 +1,15 @@
 import { ChangeCityMenu } from "./changeСityMenu.js";
+
 const chooseCity = document.querySelector('#cities');
-const chooseBtn = document.querySelector('#choose')
+const chooseBtn = document.querySelector('#choose');
+const btnSearch = document.querySelector('#search');
+console.log(btnSearch);
 const menu = new ChangeCityMenu();
+window.onload = async function(){
+  await menu.getLocalCoord('Kiev');
+  menu.getWeatherIndicators();
+  menu.showWeather();
+}
 let openedStatus = false;
 chooseBtn.addEventListener('click', (event) => {
   if(!openedStatus){
@@ -14,6 +22,9 @@ chooseBtn.addEventListener('click', (event) => {
     menu.clearMenu(chooseCity);
     openedStatus = false;
   }
+});
+btnSearch.addEventListener('click', (event) => {
+  menu.startSearch();
 })
 
 
