@@ -11,6 +11,7 @@ window.onload = async function(){
   menu.showWeather();
 }
 let openedStatus = false;
+menu.startSearch(btnSearch);
 chooseBtn.addEventListener('click', (event) => {
   if(!openedStatus){
     menu.openMenu(chooseCity);
@@ -23,8 +24,3 @@ chooseBtn.addEventListener('click', (event) => {
     openedStatus = false;
   }
 });
-btnSearch.addEventListener('click', (event) => {
-  menu.startSearch();
-})
-
-

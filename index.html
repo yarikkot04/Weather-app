@@ -11,22 +11,23 @@
   <div id="field">
     <div id="city">
       <h1>Weather ... now</h1>
-      <div id="time"></div>
+      <div id="time"><p></p></div>
     </div>
     <div id="image"></div>
     <div id="weather"></div>
-    <div class="rigthside max"></div>
-    <div class="rigthside min"></div>
-    <div class="addParam wind"></div>
-    <div class="addParam press"></div>
-    <div class="addParam moist"></div>
+    <div class="rigthside max"><p>...</p>max</div>
+    <div class="rigthside min"><p>...</p>min</div>
+    <div class="addParam wind">Wind<p>...</p></div>
+    <div class="addParam press"><p>...</p></div>
+    <div class="addParam hum"><p>...</p></div>
   </div>
 
   <div id="cities" close="true">
-    <button id="choose">Choose sity</button>
+    <button id="choose">Choose city</button>
   </div>
   <div id="search">Search</div>
   <script type="module" src="/js/main.js"></script>
+  <script src="node_modules/moment/min/moment.min.js"></script>
+  <script src="node_modules/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 </body>
-
 </html>
