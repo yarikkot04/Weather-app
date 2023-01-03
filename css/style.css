@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
-  background-image: url('/img/city/kiev.jpg');
+  background-image: url('/img/cities/kiev.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -131,7 +131,7 @@ ul {
 }
 #time p{
   position: absolute;
-  left: 5px;
+  left: 10px;
   top: -25px;
   font-size: 1.2rem;
   line-height: 35px;
@@ -139,7 +139,7 @@ ul {
 #city{
   position: absolute;
   top: 10px;
-  left: 2px;
+  left: 10px;
   width: 440px;
   height: 80px;
   margin-bottom: 5px;
@@ -219,6 +219,7 @@ ul {
   font-size: 3.5rem;
 }
 #image{
+  border-radius: 50%;
   position: absolute;
   left: 130px;
   top:110px;

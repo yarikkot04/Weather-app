@@ -22,6 +22,7 @@ export class CityMenu {
       wind: document.querySelector('.wind'),
       pressure: document.querySelector('.press'),
       humidity: document.querySelector('.hum'),
+      image: document.querySelector('#image'),
     }
   };
 
@@ -83,7 +84,7 @@ export class CityMenu {
       await this.getLocalCoord(this.#curentMode.innerHTML);
       this.getWeatherIndicators();
     });
-  }
+  };
   async getLocalCoord(city) {
     const data = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city.replace(' ', '_')}&limit=5&appid=${this.#apiKey}`);
     const dataJSON = await data.json();
@@ -94,6 +95,7 @@ export class CityMenu {
   async getWeatherIndicators() {
     const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.#locationCoord[0]}&lon=${this.#locationCoord[1]}&appid=${this.#apiKey}`)
     const weatherDataJSON = await weatherData.json();
+    console.log(weatherDataJSON.weather[0].main)
     let indicators = {
       city: this.#locationCoord[2],
       temp: Math.round(weatherDataJSON.main.temp - this.#kelvinCoeff),
@@ -102,11 +104,12 @@ export class CityMenu {
       wind: weatherDataJSON.wind.speed,
       press: weatherDataJSON.main.pressure,
       hum: weatherDataJSON.main.humidity,
+      currWeath: weatherDataJSON.weather[0].main,
     };
     this.showWeather(indicators);
   };
   changeBackground(city) {
-    document.body.style.backgroundImage = `url('/img/city/${city.replace(' ', '_').toLowerCase()}.jpg')`;
+    document.body.style.backgroundImage = `url('/img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
   };
   _chooseContinent(city){
     for(let i = 0; i < this.#cities.America.length; i++){
@@ -118,12 +121,25 @@ export class CityMenu {
       if(city == this.#cities.Asia[i]) return 'Asia';
     };
     return null;
-  }
+  };
   showTime(city) {
     let continent = this._chooseContinent(city);
     continent == undefined ? continent = 'Europe' : null;
     let time = moment().tz(`${continent}/${city.replace(' ','_')}`).format('HH:mm a - MMMM Do YYYY');
     return time;
+  };
+  chooseWeatherIcon(weatherInd){
+    const conditions = {
+      Clear: "/img/weather/clear.jpg",
+      Clouds: "/img/weather/clouds.jpg",
+      Rain: "/img/weather/rain.jpg",
+      Snow: "/img/weather/snow.jpg",
+    };
+    for(let key in conditions){
+      if(weatherInd == key){
+        this.#mainInfo.DOM.image.src = conditions[key];
+      };
+    }
   }
   showWeather(options) {
     let temp = options.temp;
@@ -141,7 +157,7 @@ export class CityMenu {
     this.#mainInfo.DOM.wind.children[1].innerHTML = options.wind + 'km/h';
     this.#mainInfo.DOM.pressure.children[1].innerHTML = options.press + 'mm';
     this.#mainInfo.DOM.humidity.children[1].innerHTML = options.hum + '%';
-    console.log(document.querySelector('#time'))
     this.changeBackground(options.city);
+    this.chooseWeatherIcon(options.currWeath);
   };
 };
