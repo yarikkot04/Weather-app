@@ -1,10 +1,10 @@
-import { ChangeCityMenu } from "./changeСityMenu.js";
+import { CityMenu } from "./СityMenu.js";
 
 const chooseCity = document.querySelector('#cities');
 const chooseBtn = document.querySelector('#choose');
 const btnSearch = document.querySelector('#search');
 console.log(btnSearch);
-const menu = new ChangeCityMenu();
+const menu = new CityMenu();
 window.onload = async function(){
   await menu.getLocalCoord('Kiev');
   menu.getWeatherIndicators();

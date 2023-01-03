@@ -1,4 +1,4 @@
-export class ChangeCityMenu {
+export class CityMenu {
   #modeArr = [];
   #openMenuStatus = false;
   #menuValues;
@@ -20,7 +20,8 @@ export class ChangeCityMenu {
       min: document.querySelector('.min'),
       time: document.querySelector('#time'),
       wind: document.querySelector('.wind'),
-
+      pressure: document.querySelector('.press'),
+      humidity: document.querySelector('.hum'),
     }
   };
 
@@ -31,7 +32,6 @@ export class ChangeCityMenu {
     obj.setAttribute('close', true);
   };
   constructMenu(obj) {
-
     if (this.#modeArr.length == 0) {
       console.log(1)
       obj.insertAdjacentHTML('beforeend', `
@@ -68,7 +68,7 @@ export class ChangeCityMenu {
     for (let key of this.#menuValues) {
       key.addEventListener('click', (event) => {
         if (this.#curentMode) {
-          this.#curentMode.style.backgroundColor = '#2b91ff';
+          this.#curentMode.style.backgroundColor = '#007bff';
         };
         this.#selectMode = [];
         this.#selectMode.push(event.target);
@@ -94,14 +94,15 @@ export class ChangeCityMenu {
   async getWeatherIndicators() {
     const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.#locationCoord[0]}&lon=${this.#locationCoord[1]}&appid=${this.#apiKey}`)
     const weatherDataJSON = await weatherData.json();
-    console.log(weatherDataJSON)
     let indicators = {
       city: this.#locationCoord[2],
       temp: Math.round(weatherDataJSON.main.temp - this.#kelvinCoeff),
       max: Math.round(weatherDataJSON.main.temp_max - this.#kelvinCoeff),
       min: Math.round(weatherDataJSON.main.temp_min - this.#kelvinCoeff),
       wind: weatherDataJSON.wind.speed,
-    }
+      press: weatherDataJSON.main.pressure,
+      hum: weatherDataJSON.main.humidity,
+    };
     this.showWeather(indicators);
   };
   changeBackground(city) {
@@ -137,7 +138,9 @@ export class ChangeCityMenu {
     this.#mainInfo.DOM.max.children[0].innerHTML = max + '°';
     this.#mainInfo.DOM.min.children[0].innerHTML = min + '°';
     this.#mainInfo.DOM.time.children[0].innerHTML = this.showTime(options.city);
-    this.#mainInfo.DOM.wind.children[0].innerHTML = options.wind;
+    this.#mainInfo.DOM.wind.children[1].innerHTML = options.wind + 'km/h';
+    this.#mainInfo.DOM.pressure.children[1].innerHTML = options.press + 'mm';
+    this.#mainInfo.DOM.humidity.children[1].innerHTML = options.hum + '%';
     console.log(document.querySelector('#time'))
     this.changeBackground(options.city);
   };

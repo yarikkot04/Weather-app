@@ -153,40 +153,47 @@ ul {
 .addParam{
   width: 140px;
   height: 110px;
-  /* border: 2px solid white; */
   background-color: #2b91ff;
   border-radius: 20%;
 }
 .wind {
   line-height: 90px;
-  padding: auto;
   font-size: 1.5rem;;
   position: absolute;
   left: 5px;
   bottom: 10px;
 }
 .wind p{
-  position: absolute;
-  left: 47px;
-  top: 5px;
+  line-height: 20px;
+  font-size: 1rem;
+}
+.text{
+  line-height: 0px;
 }
 .hum {
   position: absolute;
   right: 5px;
   bottom: 10px;
 }
+.hum p{
+  line-height: 20px;
+  font-size: 1rem;
+}
 .press {
   position: absolute;
   left: 155px;
   bottom: 10px;
+}
+.press p{
+  line-height: 20px;
+  font-size: 1rem;
 }
 .rigthside {
   font-size: 1.5rem;
   position: absolute;
   width: 100px;
   height: 70px;
-  border: 2px solid white;
-  right: 5px;
+  right: 10px;
 }
 .rigthside p{
   position: absolute;
@@ -210,7 +217,6 @@ ul {
   text-align: center;
   line-height: 200px;
   font-size: 3.5rem;
-  border: 2px solid white;
 }
 #image{
   position: absolute;
