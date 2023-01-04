@@ -118,7 +118,7 @@ export class CityMenu {
     let formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: 'UTC',
       hour12: false,
-      hour: "2-digit",
+      hour: "numeric",
       minute: "numeric",
       year: "numeric",
       month: "short",
@@ -131,8 +131,11 @@ export class CityMenu {
       date.getUTCMinutes(), date.getUTCSeconds());
     const dateUTC = new Date(now_utc);
     const currDate = +dateUTC + this.#cities[city.toLowerCase().replace(' ','_')]*this.#hourInMs;
-    const dateUTCstring = formatter.format(currDate);
-    return dateUTCstring;;
+    let dateUTCstring = formatter.format(currDate);
+    dateUTCstring = dateUTCstring.split(',');
+    dateUTCstring[dateUTCstring.length - 1] = dateUTCstring[dateUTCstring.length - 1].replace(' 24',' 00')
+    dateUTCstring = dateUTCstring.join(', ');
+    return dateUTCstring;
   };
   chooseWeatherIcon(weatherInd) {
     const conditions = {
