@@ -112,7 +112,7 @@ export class CityMenu {
     this.showWeather(indicators);
   };
   changeBackground(city) {
-    document.body.style.backgroundImage = `url('../img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
+    document.body.style.backgroundImage = `url('img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
   };
   showTime(city) {
     let formatter = new Intl.DateTimeFormat('en-US', {
@@ -136,10 +136,10 @@ export class CityMenu {
   };
   chooseWeatherIcon(weatherInd) {
     const conditions = {
-      Clear: "../img/weather/clear.jpg",
-      Clouds: "../img/weather/clouds.jpg",
-      Rain: "../img/weather/rain.jpg",
-      Snow: "../img/weather/snow.jpg",
+      Clear: "img/weather/clear.jpg",
+      Clouds: "img/weather/clouds.jpg",
+      Rain: "img/weather/rain.jpg",
+      Snow: "img/weather/snow.jpg",
     };
     for (let key in conditions) {
       if (weatherInd == key) {
