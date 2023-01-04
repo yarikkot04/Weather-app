@@ -86,7 +86,7 @@ export class CityMenu {
     });
   };
   async getLocalCoord(city) {
-    const data = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city.replace(' ', '_')}&limit=5&appid=${this.#apiKey}`);
+    const data = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city.replace(' ', '_')}&limit=5&appid=${this.#apiKey}`);
     const dataJSON = await data.json();
     const lat = dataJSON[0].lat;
     const lon = dataJSON[0].lon;
