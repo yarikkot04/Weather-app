@@ -112,7 +112,7 @@ export class CityMenu {
     this.showWeather(indicators);
   };
   changeBackground(city) {
-    document.body.style.backgroundImage = `url('/img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
+    document.body.style.backgroundImage = `url('../img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
   };
   showTime(city) {
     let formatter = new Intl.DateTimeFormat('en-US', {
