@@ -4,10 +4,13 @@ export class CityMenu {
   #menuValues;
   #selectMode = [];
   #curentMode;
+  #hourInMs = 3600000;
   #cities = {
-    America: ['New York'],
-    Europe: ['Paris', 'London', 'Kiev'],
-    Asia: ['Tokyo'],
+    london: 0,
+    kiev: 2,
+    paris: 1,
+    new_york: -5,
+    tokyo: 9,
   }
   #kelvinCoeff = 273.13;
   #apiKey = '07ea99368a9903a17515ff10a2696447';
@@ -111,32 +114,35 @@ export class CityMenu {
   changeBackground(city) {
     document.body.style.backgroundImage = `url('/img/cities/${city.replace(' ', '_').toLowerCase()}.jpg')`;
   };
-  _chooseContinent(city){
-    for(let i = 0; i < this.#cities.America.length; i++){
-      console.log(1)
-      console.log(city, this.#cities.America[i]);
-      if(city == this.#cities.America[i]) return 'America';
-    };
-    for(let i = 0; i < this.#cities.Asia.length; i++){
-      if(city == this.#cities.Asia[i]) return 'Asia';
-    };
-    return null;
-  };
   showTime(city) {
-    let continent = this._chooseContinent(city);
-    continent == undefined ? continent = 'Europe' : null;
-    let time = moment().tz(`${continent}/${city.replace(' ','_')}`).format('HH:mm a - MMMM Do YYYY');
-    return time;
+    let formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'UTC',
+      hour12: false,
+      hour: "2-digit",
+      minute: "numeric",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      weekday: "short",
+    })
+    let date = new Date();
+    const now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
+      date.getUTCDate(), date.getUTCHours(),
+      date.getUTCMinutes(), date.getUTCSeconds());
+    const dateUTC = new Date(now_utc);
+    const currDate = +dateUTC + this.#cities[city.toLowerCase().replace(' ','_')]*this.#hourInMs;
+    const dateUTCstring = formatter.format(currDate);
+    return dateUTCstring;;
   };
-  chooseWeatherIcon(weatherInd){
+  chooseWeatherIcon(weatherInd) {
     const conditions = {
       Clear: "img/weather/clear.jpg",
       Clouds: "img/weather/clouds.jpg",
       Rain: "img/weather/rain.jpg",
       Snow: "img/weather/snow.jpg",
     };
-    for(let key in conditions){
-      if(weatherInd == key){
+    for (let key in conditions) {
+      if (weatherInd == key) {
         this.#mainInfo.DOM.image.src = conditions[key];
       };
     }
