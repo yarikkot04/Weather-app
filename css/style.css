@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
-  background-image: url('img/cities/kiev.jpg');
+  background-image: url('/img/cities/kiev.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;

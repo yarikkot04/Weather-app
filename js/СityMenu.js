@@ -130,10 +130,10 @@ export class CityMenu {
   };
   chooseWeatherIcon(weatherInd){
     const conditions = {
-      Clear: "/img/weather/clear.jpg",
-      Clouds: "/img/weather/clouds.jpg",
-      Rain: "/img/weather/rain.jpg",
-      Snow: "/img/weather/snow.jpg",
+      Clear: "img/weather/clear.jpg",
+      Clouds: "img/weather/clouds.jpg",
+      Rain: "img/weather/rain.jpg",
+      Snow: "img/weather/snow.jpg",
     };
     for(let key in conditions){
       if(weatherInd == key){
@@ -153,10 +153,10 @@ export class CityMenu {
     this.#mainInfo.DOM.city.children[0].innerHTML = `Weather in ${options.city} today`;
     this.#mainInfo.DOM.max.children[0].innerHTML = max + '°';
     this.#mainInfo.DOM.min.children[0].innerHTML = min + '°';
-    this.#mainInfo.DOM.time.children[0].innerHTML = this.showTime(options.city);
     this.#mainInfo.DOM.wind.children[1].innerHTML = options.wind + 'km/h';
     this.#mainInfo.DOM.pressure.children[1].innerHTML = options.press + 'mm';
     this.#mainInfo.DOM.humidity.children[1].innerHTML = options.hum + '%';
+    this.#mainInfo.DOM.time.children[0].innerHTML = this.showTime(options.city);
     this.changeBackground(options.city);
     this.chooseWeatherIcon(options.currWeath);
   };
