@@ -280,9 +280,38 @@ ul {
   left: 15px;
 }
 .blocks{
+  position: absolute;
   background-color: #007bff;
   margin-bottom: 25px;
   border: 2px solid wheat;
   width: 250px;
   height: 150px;
+}
+.one{
+  top: 0px;
+}
+.two{
+  top: 170px;
+}
+.three{
+  top: 340px;
+}
+.four{
+  top: 510px;
+}
+.fmax{
+  position: absolute;
+  right: 15px;
+  top: 0px;
+}
+.fmin{
+  position: absolute;
+  right: 20px;
+  top: 70px;
+}
+.fweath{
+  position: absolute;
+  left: 20px;
+  top: 50px;
+  font-size: 3rem;;
 }
