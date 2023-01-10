@@ -227,3 +227,62 @@ ul {
   height: 190px;
   border: 2px solid white;
 }
+#nextDays[close="true"]{
+  position: absolute;
+  top:100px;
+  left: 250px;
+  width: 280px;
+  height: 35px;
+  color: aliceblue;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 10%;
+  user-select: none;
+}
+#nextDays[close="false"]{
+  position: absolute;
+  top:100px;
+  left: 250px;
+  width: 280px;
+  height: 750px;
+  color: aliceblue;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 35px;
+  border-radius: 4%;
+  user-select: none;
+}
+#next{
+  position: absolute;
+  left: 35px;
+  width: 210px;
+  height: 35px;
+  color: aliceblue;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 30px;
+  border-radius: 10%;
+  user-select: none;
+}
+#next:hover {
+  font-size: 1.4rem;
+}
+.mblck{
+  position:absolute;
+  top: 50px;
+  left: 15px;
+}
+.blocks{
+  background-color: #007bff;
+  margin-bottom: 25px;
+  border: 2px solid wheat;
+  width: 250px;
+  height: 150px;
+}

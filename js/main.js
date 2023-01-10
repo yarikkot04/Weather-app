@@ -1,10 +1,12 @@
 import { CityMenu } from "./СityMenu.js";
+import { FolowDays } from "./followingDays.js";
 
 const chooseCity = document.querySelector('#cities');
 const chooseBtn = document.querySelector('#choose');
 const btnSearch = document.querySelector('#search');
-console.log(btnSearch);
 const menu = new CityMenu();
+const nextDaysMenu = new FolowDays();
+nextDaysMenu.checkFollowStatus();
 window.onload = async function(){
   await menu.getLocalCoord('Kiev');
   menu.getWeatherIndicators();
