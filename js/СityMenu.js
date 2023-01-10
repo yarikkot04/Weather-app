@@ -12,9 +12,7 @@ export class CityMenu {
     new_york: -5,
     tokyo: 9,
   }
-  #kelvinCoeff = 273.13;
-  #apiKey = '07ea99368a9903a17515ff10a2696447';
-  // #locationCoord = [];
+  #apiKey = '0cc11595e89649cb8c4232321230901';
   #mainInfo = {
     DOM: {
       city: document.querySelector('#city'),
@@ -90,8 +88,7 @@ export class CityMenu {
   };
 
   async getWeatherIndicators(city) {
-    console.log(`https://api.weatherapi.com/v1/forecast.json?key=0cc11595e89649cb8c4232321230901&q=${city}&days=7`)
-    const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=0cc11595e89649cb8c4232321230901&q=${city}&days=7`)
+    const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${this.#apiKey}&q=${city}&days=7`)
     const weatherDataJSON = await weatherData.json();
     console.log(weatherDataJSON)
     let indicators = {
@@ -102,7 +99,7 @@ export class CityMenu {
       wind: weatherDataJSON.forecast.forecastday[0].day.maxwind_kph,
       press: weatherDataJSON.current.pressure_mb,
       hum: weatherDataJSON.current.humidity,
-      // currWeath: weatherDataJSON.weather[0].main,
+      currWeath: weatherDataJSON.current.condition.icon,
     };
     this.showWeather(indicators);
   };
@@ -133,17 +130,7 @@ export class CityMenu {
     return dateUTCstring;
   };
   chooseWeatherIcon(weatherInd) {
-    const conditions = {
-      Clear: "img/weather/clear.jpg",
-      Clouds: "img/weather/clouds.jpg",
-      Rain: "img/weather/rain.jpg",
-      Snow: "img/weather/snow.jpg",
-    };
-    for (let key in conditions) {
-      if (weatherInd == key) {
-        this.#mainInfo.DOM.image.src = conditions[key];
-      };
-    }
+        this.#mainInfo.DOM.image.src = weatherInd;
   }
   showWeather(options) {
     let temp = options.temp;
