@@ -8,9 +8,10 @@ const menu = new CityMenu();
 const nextDaysMenu = new FolowDays();
 nextDaysMenu.checkFollowStatus();
 window.onload = async function(){
-  await menu.getLocalCoord('Kiev');
-  menu.getWeatherIndicators();
+  test();
+  menu.getWeatherIndicators('Kiev');
   menu.showWeather();
+
 }
 let openedStatus = false;
 menu.startSearch(btnSearch);
@@ -26,3 +27,12 @@ chooseBtn.addEventListener('click', (event) => {
     openedStatus = false;
   }
 });
+
+
+async function test(){
+  console.log(1);
+  let data = await fetch('https://api.weatherapi.com/v1/forecast.json?key=0cc11595e89649cb8c4232321230901&q=London&days=7');
+  let json = await data.json();
+  console.log(json);
+};
+

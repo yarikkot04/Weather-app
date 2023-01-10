@@ -14,7 +14,7 @@ export class CityMenu {
   }
   #kelvinCoeff = 273.13;
   #apiKey = '07ea99368a9903a17515ff10a2696447';
-  #locationCoord = [];
+  // #locationCoord = [];
   #mainInfo = {
     DOM: {
       city: document.querySelector('#city'),
@@ -37,7 +37,6 @@ export class CityMenu {
   };
   constructMenu(obj) {
     if (this.#modeArr.length == 0) {
-      console.log(1)
       obj.insertAdjacentHTML('beforeend', `
           <div class="menuValue tableCity kiev">Kiev</div>
           <div class="menuValue tableCity">New York</div> 
@@ -75,39 +74,35 @@ export class CityMenu {
           this.#curentMode.style.backgroundColor = '#007bff';
         };
         this.#selectMode = [];
+
         this.#selectMode.push(event.target);
         this.#curentMode = this.#selectMode[0];
         event.target.style.backgroundColor = '#0000FF';
+        console.log(this.#curentMode.innerHTML);
       });
     };
   };
   startSearch(key) {
     key.addEventListener('click', async () => {
-      console.log(222)
-      await this.getLocalCoord(this.#curentMode.innerHTML);
-      this.getWeatherIndicators();
+      console.log(this.#curentMode.innerHTML)
+      this.getWeatherIndicators(this.#curentMode.innerHTML);
     });
   };
-  async getLocalCoord(city) {
-    const data = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city.replace(' ', '_')}&limit=5&appid=${this.#apiKey}`);
-    const dataJSON = await data.json();
-    const lat = dataJSON[0].lat;
-    const lon = dataJSON[0].lon;
-    this.#locationCoord = [lat, lon, city];
-  };
-  async getWeatherIndicators() {
-    const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.#locationCoord[0]}&lon=${this.#locationCoord[1]}&appid=${this.#apiKey}`)
+
+  async getWeatherIndicators(city) {
+    console.log(`https://api.weatherapi.com/v1/forecast.json?key=0cc11595e89649cb8c4232321230901&q=${city}&days=7`)
+    const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=0cc11595e89649cb8c4232321230901&q=${city}&days=7`)
     const weatherDataJSON = await weatherData.json();
-    console.log(weatherDataJSON.weather[0].main)
+    console.log(weatherDataJSON)
     let indicators = {
-      city: this.#locationCoord[2],
-      temp: Math.round(weatherDataJSON.main.temp - this.#kelvinCoeff),
-      max: Math.round(weatherDataJSON.main.temp_max - this.#kelvinCoeff),
-      min: Math.round(weatherDataJSON.main.temp_min - this.#kelvinCoeff),
-      wind: weatherDataJSON.wind.speed,
-      press: weatherDataJSON.main.pressure,
-      hum: weatherDataJSON.main.humidity,
-      currWeath: weatherDataJSON.weather[0].main,
+      city: city,
+      temp: Math.round(weatherDataJSON.current.temp_c),
+      max: Math.round(weatherDataJSON.forecast.forecastday[0].day.maxtemp_c),
+      min: Math.round(weatherDataJSON.forecast.forecastday[0].day.mintemp_c),
+      wind: weatherDataJSON.forecast.forecastday[0].day.maxwind_kph,
+      press: weatherDataJSON.current.pressure_mb,
+      hum: weatherDataJSON.current.humidity,
+      // currWeath: weatherDataJSON.weather[0].main,
     };
     this.showWeather(indicators);
   };
