@@ -253,7 +253,7 @@ ul {
   text-align: center;
   font-size: 1.2rem;
   line-height: 35px;
-  border-radius: 4%;
+  border-radius: 3%;
   user-select: none;
 }
 #next{
@@ -282,7 +282,7 @@ ul {
   position: absolute;
   background-color: #007bff;
   margin-bottom: 25px;
-  border: 2px solid wheat;
+  border: 2px solid white;
   width: 250px;
   height: 150px;
 }
@@ -311,6 +311,32 @@ ul {
 .fweath{
   position: absolute;
   left: 20px;
-  top: 50px;
-  font-size: 3rem;;
+  top: 30px;
+  font-size: 1.75rem;;
+}
+.fweath p{
+  position: absolute;
+  font-size: 2rem;
+  top: 20px;
+}
+.imageF{
+  position: absolute;
+  top: 40px;
+  left: 90px;
+  width: 80px;
+  height: 80px;
+}
+.date{
+  position: absolute;
+  left: 20px;
+}
+.fmin p{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.fmax p{
+  top: 5px;
+  left: 5px;
+  position: absolute;
 }

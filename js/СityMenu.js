@@ -76,21 +76,16 @@ export class CityMenu {
         this.#selectMode.push(event.target);
         this.#curentMode = this.#selectMode[0];
         event.target.style.backgroundColor = '#0000FF';
-        console.log(this.#curentMode.innerHTML);
       });
     };
   };
-  startSearch(key) {
-    key.addEventListener('click', async () => {
-      console.log(this.#curentMode.innerHTML)
+  startSearch() {
       this.getWeatherIndicators(this.#curentMode.innerHTML);
-    });
   };
 
   async getWeatherIndicators(city) {
     const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${this.#apiKey}&q=${city}&days=7`)
     const weatherDataJSON = await weatherData.json();
-    console.log(weatherDataJSON)
     let indicators = {
       city: city,
       temp: Math.round(weatherDataJSON.current.temp_c),
@@ -140,7 +135,6 @@ export class CityMenu {
     if (min > 0) min = '+' + min;
     if (temp > 0) temp = '+' + temp;
     this.#mainInfo.DOM.weather.innerHTML = temp + '°';
-    console.log(this.#mainInfo.DOM.city.children[0]);
     this.#mainInfo.DOM.city.children[0].innerHTML = `Weather in ${options.city} today`;
     this.#mainInfo.DOM.max.children[0].innerHTML = max + '°';
     this.#mainInfo.DOM.min.children[0].innerHTML = min + '°';
