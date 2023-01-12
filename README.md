@@ -1,0 +1,1 @@
+The weather forecast is written in OOP style on JavaScript. The program uses asynchronous requests to the weatherapi server.
